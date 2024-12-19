@@ -2,6 +2,7 @@ from flask import Flask, request, jsonify, send_file
 from flask_cors import CORS
 from PIL import Image, ImageFilter, ImageOps
 import io
+import numpy as np
 
 app = Flask(__name__)
 CORS(app)
@@ -11,8 +12,14 @@ def convert_to_coloring_image(image):
     grayImage = ImageOps.grayscale(image)
     # apply edge detection
     edges = grayImage.filter(ImageFilter.FIND_EDGES)
+    np_edges = np.array(edges) # convert to numpy array
+
+    # threshold for enhancing dark lines on image
+    threshold = 50 # adjust as necessary
+    np_edges - np.where(np_edges < threshold, 0, 255).astype(np.uint8) # make dark areas black, rest white
+
     # invert colors for coloring book effect
-    coloringImage = ImageOps.invert(edges)
+    coloringImage = Image.fromarray(255 - np_edges)
     return coloringImage
 
 

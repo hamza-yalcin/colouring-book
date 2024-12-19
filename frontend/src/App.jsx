@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import './css_files/imageProcessor.css';
 
 function ImageProcessor() {
     const [selectedFile, setSelectedFile] = useState(null);
@@ -31,10 +32,12 @@ function ImageProcessor() {
     };
 
     return (
-        <div>
+        <div className="container">
             <h1>Image to Coloring Book</h1>
+            <div className="contros">
             <input type="file" onChange={handleFileChange} />
             <button onClick={handleUpload}>Upload and Process</button>
+            </div>
             {processedImage && (
                 <div>
                     <h2>Processed Image:</h2>
