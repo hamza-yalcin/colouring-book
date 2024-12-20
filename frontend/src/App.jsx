@@ -31,10 +31,14 @@ function ImageProcessor() {
         }
     };
 
+    const handlePrint = () => {
+      window.print()
+    }
+
     return (
         <div className="container">
             <h1>Image to Coloring Book</h1>
-            <div className="contros">
+            <div className="controls">
             <input type="file" onChange={handleFileChange} />
             <button onClick={handleUpload}>Upload and Process</button>
             </div>
@@ -42,6 +46,7 @@ function ImageProcessor() {
                 <div>
                     <h2>Processed Image:</h2>
                     <img src={processedImage} alt="Processed" />
+                    <button onClick={handlePrint} className="upload-button">Print Image</button>
                 </div>
             )}
         </div>
