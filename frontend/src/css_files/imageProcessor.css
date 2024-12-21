@@ -30,16 +30,61 @@ button {
     background-color: #0056b3;
 }
 
+.process-button {
+    margin-top: 10px;
+    padding: 10px 20px;
+    font-size: 1em;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.process-button:hover {
+    background-color: #0056b3;
+}
+
 @media print {
     body * {
         visibility: hidden; 
     }
 
-#processed-image {
-    visibility: visible;
-    display: block;
-    margin: auto;
-    width: 100%;
-    height:auto;
-}}
+    #processed-image {
+        visibility: visible;
+        display: block;
+        margin: auto;
+        width: 100%;
+        height: auto;
+    }
+}
+
+.processed-image {
+    max-width: 100%; /* Scale to fit the container */
+    max-height: 500px; /* Maintain a maximum height */
+    object-fit: contain; /* Preserve aspect ratio without cropping */
+}
+
+/* Hide the default file input */
+.hidden-file-input {
+    display: none;
+}
+
+/* Style the label to look like a button */
+.choose-file-button {
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 1em;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-align: center;
+    margin-right: 10px;
+}
+
+.choose-file-button:hover {
+    background-color: #0056b3;
+}
 

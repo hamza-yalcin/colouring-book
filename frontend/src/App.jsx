@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import './css_files/imageProcessor.css';
+import './css_files/navigation.css'
 
 function ImageProcessor() {
     const [selectedFile, setSelectedFile] = useState(null);
@@ -36,20 +37,32 @@ function ImageProcessor() {
     }
 
     return (
+      <div>
+        <nav className="navbar">
+          <h1 className="navbar-title">ColorMe</h1>
+        </nav>
         <div className="container">
-            <h1>Image to Coloring Book</h1>
             <div className="controls">
-            <input type="file" onChange={handleFileChange} />
-            <button onClick={handleUpload}>Upload and Process</button>
+            <input 
+              type="file" 
+              onChange={handleFileChange}
+              id="file-input"
+              className="hidden-file-input"
+            />
+            <label htmlFor="file-input" className="choose-file-button">
+              Choose File
+            </label>
+            <button onClick={handleUpload} className="process-button">Upload and Process</button>
             </div>
             {processedImage && (
                 <div>
                     <h2>Processed Image:</h2>
-                    <img id="processed-image" src={processedImage} alt="Processed"/>
+                    <img id="processed-image" src={processedImage} alt="Processed" className="processed-image"/>
                     <button onClick={handlePrint} className="upload-button">Print Image</button>
                 </div>
             )}
         </div>
+      </div>
     );
 }
 

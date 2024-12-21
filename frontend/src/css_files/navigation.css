@@ -1,0 +1,20 @@
+.navbar {
+    width: 100%; /* Make the navbar span the full width of the screen */
+    position: fixed; /* Keep the navbar fixed at the top */
+    top: 0; /* Position it at the top */
+    left: 0; /* Ensure it starts from the left edge */
+    background-color: #333; /* Dark background for the navbar */
+    color: white; /* White text for contrast */
+    padding: 10px 20px; /* Add padding for a cleaner look */
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2); /* Optional shadow for better appearance */
+    z-index: 1000; /* Ensure the navbar stays above other content */
+    display: flex; /* Flexbox for alignment */
+    align-items: center; /* Vertically center the items */
+    justify-content: space-between; /* Space out the items horizontally */
+}
+
+.navbar-title {
+    font-size: 1.5em; /* Adjust the font size */
+    font-family: 'Arial', sans-serif; /* Choose a font */
+    margin: 0; /* Remove default margin */
+}
