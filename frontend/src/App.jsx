@@ -45,7 +45,7 @@ function ImageProcessor() {
             {processedImage && (
                 <div>
                     <h2>Processed Image:</h2>
-                    <img src={processedImage} alt="Processed" />
+                    <img id="processed-image" src={processedImage} alt="Processed"/>
                     <button onClick={handlePrint} className="upload-button">Print Image</button>
                 </div>
             )}

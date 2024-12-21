@@ -7,7 +7,7 @@ import numpy as np
 app = Flask(__name__)
 CORS(app)
 
-def convert_to_coloring_image(image):
+def convert_to_coloring_image(image, threshold=50):
     # convert to grayscale
     grayImage = ImageOps.grayscale(image)
     # apply edge detection
@@ -15,8 +15,7 @@ def convert_to_coloring_image(image):
     np_edges = np.array(edges) # convert to numpy array
 
     # threshold for enhancing dark lines on image
-    threshold = 50 # adjust as necessary
-    np_edges - np.where(np_edges < threshold, 0, 255).astype(np.uint8) # make dark areas black, rest white
+    np_edges = np.where(np_edges < threshold, 0, 255).astype(np.uint8) # make dark areas black, rest white
 
     # invert colors for coloring book effect
     coloringImage = Image.fromarray(255 - np_edges)
@@ -29,9 +28,14 @@ def process_image():
         return jsonify({'error: image not uploaded'}), 400
     
     uploadedFile = request.files['image']
-    image = Image.open(uploadedFile.stream)
+    try:
+        image = Image.open(uploadedFile.stream)
+    except Exception as e:
+        return jsonify({'error': 'failed to process image'}), 400
 
-    coloringImage = convert_to_coloring_image(image)
+    threshold = int(request.args.get('threshold', 50))
+
+    coloringImage = convert_to_coloring_image(image, threshold)
 
      # Save to an in-memory file to send as a response
     img_io = io.BytesIO()
