@@ -72,6 +72,7 @@ button {
 
 /* Style the label to look like a button */
 .choose-file-button {
+    font-family: 'Arial', sans-serif; /* Font family */
     display: inline-block;
     padding: 10px 20px;
     font-size: 1em;
@@ -81,7 +82,9 @@ button {
     border-radius: 5px;
     cursor: pointer;
     text-align: center;
-    margin-right: 10px;
+    margin-right: 60px;
+    margin-top: 40px;
+
 }
 
 .choose-file-button:hover {

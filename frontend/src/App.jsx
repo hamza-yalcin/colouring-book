@@ -39,7 +39,13 @@ function ImageProcessor() {
     return (
       <div>
         <nav className="navbar">
-          <h1 className="navbar-title">ColorMe</h1>
+          <h1 className="navbar-title">
+            <span className="color-text">Color</span><span className="me-text">Me</span>
+          </h1>
+          <div className="navbar-links">
+          <h2 className="navbar-login">Login</h2>
+          <h2 className="navbar-signup">Sign up</h2>
+          </div>
         </nav>
         <div className="container">
             <div className="controls">

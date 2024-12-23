@@ -1,20 +1,65 @@
 .navbar {
-    width: 100%; /* Make the navbar span the full width of the screen */
-    position: fixed; /* Keep the navbar fixed at the top */
-    top: 0; /* Position it at the top */
-    left: 0; /* Ensure it starts from the left edge */
-    background-color: #333; /* Dark background for the navbar */
-    color: white; /* White text for contrast */
-    padding: 10px 20px; /* Add padding for a cleaner look */
-    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2); /* Optional shadow for better appearance */
-    z-index: 1000; /* Ensure the navbar stays above other content */
-    display: flex; /* Flexbox for alignment */
-    align-items: center; /* Vertically center the items */
-    justify-content: space-between; /* Space out the items horizontally */
+    width: 100%; /* Full width */
+    position: fixed; /* Fixed at the top */
+    top: 0; /* Top of the page */
+    left: 0; /* Left edge */
+    background-color: #333; /* Dark background */
+    color: white; /* White text */
+    padding: 10px 20px; /* Padding for aesthetics */
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2); /* Optional shadow */
+    z-index: 1000; /* Stay above other content */
+    display: flex; /* Use flexbox for layout */
+    align-items: center; /* Center items vertically */
+    justify-content: space-between; /* Space items across the navbar */
 }
 
 .navbar-title {
-    font-size: 1.5em; /* Adjust the font size */
-    font-family: 'Arial', sans-serif; /* Choose a font */
-    margin: 0; /* Remove default margin */
+    font-size: 1.5em; /* Title font size */
+    font-family: 'Arial', sans-serif; /* Font family */
+    margin: 0; /* No default margin */
+    display: flex;
 }
+
+.color-text {
+    color: white;
+}
+
+.me-text {
+    color: #007bff;
+}
+
+.navbar-links {
+    display: flex; /* Flexbox for alignment */
+    gap: 20px; /* Add space between login and signup */
+    margin-right: 100px;
+}
+
+.navbar-login {
+    font-size: 1em; /* Adjust font size */
+    font-family: 'Arial', sans-serif; /* Font family */
+    color: white; /* White text */
+    text-decoration: none; /* Remove underline for links */
+    cursor: pointer;
+    display: inline-block;
+    padding: 5px 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    
+}
+
+.navbar-signup {
+    font-size: 1em; /* Adjust font size */
+    font-family: 'Arial', sans-serif; /* Font family */
+    color: white; /* White text */
+    text-decoration: none; /* Remove underline for links */
+    cursor: pointer;
+    display: inline-block;
+    padding: 5px 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+}
+
