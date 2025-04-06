@@ -9,30 +9,30 @@ import cv2
 app = Flask(__name__)
 CORS(app)
 
-def convert_to_coloring_image(image, threshold=100):
+def convert_to_coloring_image(image, threshold=50):
     image_np = np.array(image)
 
-    # Convert to grayscale
     gray = cv2.cvtColor(image_np, cv2.COLOR_RGB2GRAY)
 
-    # Apply GaussianBlur to reduce noise and improve edge detection
-    blurred = cv2.GaussianBlur(gray, (5, 5), 0)
+    kernel_size = max(3, min(gray.shape[0] // 100, 11))
 
-    # Apply Canny edge detection
+    if kernel_size % 2 == 0:
+        kernel_size += 1  
+    blurred = cv2.GaussianBlur(gray, (kernel_size, kernel_size), 0)
+
     edges = cv2.Canny(blurred, threshold1=threshold, threshold2=threshold * 2)
 
-    # Invert colors for a white background and black edges
-    inverted_edges = cv2.bitwise_not(edges)
+    dilation_kernel = cv2.getStructuringElement(cv2.MORPH_RECT, (3, 3))
+    thick_edges = cv2.dilate(edges, dilation_kernel, iterations=1)
 
-    # Remove small noise using morphological opening
-    kernel = cv2.getStructuringElement(cv2.MORPH_RECT, (3, 3))  # Adjust kernel size if needed
-    cleaned_edges = cv2.morphologyEx(inverted_edges, cv2.MORPH_OPEN, kernel)
+    inverted_edges = cv2.bitwise_not(thick_edges)
 
-    # Convert back to a PIL image
+    morphology_kernel = cv2.getStructuringElement(cv2.MORPH_ELLIPSE, (5, 5))
+    cleaned_edges = cv2.morphologyEx(inverted_edges, cv2.MORPH_OPEN, morphology_kernel)
+
     coloring_image = Image.fromarray(cleaned_edges)
 
     return coloring_image
-
 
 
 @app.route('/process-image', methods=['POST'])
@@ -46,11 +46,10 @@ def process_image():
     except Exception as e:
         return jsonify({'error': 'failed to process image'}), 400
 
-    threshold = int(request.args.get('threshold', 100))
+    threshold = int(request.args.get('threshold', 50))
 
     coloringImage = convert_to_coloring_image(image, threshold)
 
-     # Save to an in-memory file to send as a response
     img_io = io.BytesIO()
     coloringImage.save(img_io, 'PNG')
     img_io.seek(0)
